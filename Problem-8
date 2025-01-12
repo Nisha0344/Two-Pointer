@@ -1,0 +1,53 @@
+//{ Driver Code Starts
+#include <bits/stdc++.h>
+
+using namespace std;
+
+class Solution {
+  public:
+    int maxWater(vector<int> &arr) {
+        // code here
+      
+       int t =0;
+       int l=0, r=0;
+       int i=0, j=arr.size()-1;
+       while(i<j){
+           l=max(l,arr[i]);
+           r=max(r,arr[j]);
+           if(arr[i]<=arr[j]){
+               t+=l-arr[i];
+               i++;
+           }
+           else {
+               t+=r-arr[j];
+               j--;
+           }
+       }
+       return t;
+    }
+};
+
+int main() {
+    int t;
+    cin >> t;
+    cin.ignore();
+    while (t--) {
+        vector<int> arr;
+        string input;
+
+        
+        getline(cin, input);
+        stringstream ss(input);
+        int number;
+        while (ss >> number) {
+            arr.push_back(number);
+        }
+
+        Solution ob;
+        int res = ob.maxWater(arr);
+
+        cout << res << endl << "~" << endl;
+    }
+    return 0;
+}
+
